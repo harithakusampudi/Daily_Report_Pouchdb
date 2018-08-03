@@ -1,6 +1,6 @@
 import PouchDB from 'pouchdb-browser'
 
-var dummy = new PouchDB('dummy');
+var dummyDB = new PouchDB('dummyDB');
 var mydb = new PouchDB('mydb');
 
 export const getAllDocs = dbName =>
@@ -25,8 +25,8 @@ setDB(dbName)
 
 export const setDB = dbName =>
   new Promise((resolve, reject) => {
-    if (dbName === 'dummy') {
-      resolve(dummy);
+    if (dbName === 'dummyDB') {
+      resolve(dummyDB);
     }
     if (dbName === 'mydb') {
         resolve(mydb);
@@ -36,7 +36,6 @@ export const setDB = dbName =>
 
  export const saveDoc = (dbName, doc) =>
  new Promise((resolve, reject) => {
- console.log("save doc",doc,dbName);
    setDB(dbName)
      .then(db => db.post(doc))
      .then(getAllDocs(dbName).then(newDocs => resolve(newDocs)))
@@ -48,11 +47,9 @@ export const setDB = dbName =>
   new Promise((resolve, reject) => {
     setDB(dbName)
       .then(db =>
-        db
-          .get(doc)
+        db.get(`${doc._id}`)
           .then(record =>
-            db
-              .remove(record)
+            db.remove(record)
               .then(
                 getAllDocs(dbName).then(remainingDocs => resolve(remainingDocs))
               )
@@ -60,6 +57,11 @@ export const setDB = dbName =>
       )
       .catch(err => reject(err));
   });
+  // export const deleteDoc = (dbName, doc) =>
+  // dbName.get(doc._id).then(function (doc) {
+  //   doc._deleted = true;
+  //   return dbName.put(doc);
+  // });
 
  export const updateDoc = (dbName, updatedDoc) =>
   new Promise((resolve, reject) => {

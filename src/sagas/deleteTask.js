@@ -5,12 +5,14 @@ import { getTaskList } from '../actions/type'
 import { types } from '../Constants/types'
 
 export function * handleTaskSaga(data){
-    const taskList = yield call(task.deleteTask,data)
+    
+    const taskList = yield call(task.deleteTask,data.data)
+    console.log("deletedsaga");
+
     yield put(getTaskList(taskList))
 }
 
 export default function * taskDeleteSaga(){
-    console.log("del");
     yield [
         takeLatest(types.DEL_TASK,handleTaskSaga)
     ]

@@ -4,10 +4,7 @@ const Reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_TASK_LIST': {
       console.log("data",action.data);
-      return state.concat(action.data);
-    }
-    case 'DELETE_TASK': {
-      return state.filter((post) => post.task !== action.task);
+      return action.data
     }
     case 'EDIT_VALUE': {
       const index = action.data.i
