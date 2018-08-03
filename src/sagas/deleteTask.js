@@ -1,14 +1,13 @@
 
 import { put, takeLatest,call } from 'redux-saga/effects'
-import  task from '../requests/taskData'
-import { getTaskList } from '../actions/type'
-import { types } from '../Constants/types'
+
+import { types } from '../constants/types'
+import { getTaskList } from '../modules'
+import  Task from '../requests/taskData'
 
 export function * handleTaskSaga(data){
     
-    const taskList = yield call(task.deleteTask,data.data)
-    console.log("deletedsaga");
-
+    const taskList = yield call(Task.deleteTask,data.data)
     yield put(getTaskList(taskList))
 }
 

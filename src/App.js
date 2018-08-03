@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TaskManger from './TaskManger';
+import TaskManger from './screens/taskManager/container';
 
 export default class App extends Component {
 

@@ -5,4 +5,5 @@ export const types={
     INPUT_CHANGE:'INPUT_CHANGE',
     DEL_TASK:'DELETE_TASK',
     FETCH_TASK_LIST:'FETCH_TASK_LIST'
+    
 }

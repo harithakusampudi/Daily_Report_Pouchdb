@@ -1,15 +1,15 @@
-import { delay } from 'redux-saga'
 import { put, takeEvery,call } from 'redux-saga/effects'
-import  task from '../requests/taskData'
-import { getTaskList } from '../actions/type'
+
+import {types} from '../constants/types'
+import { getTaskList } from '../modules'
+import  Task from '../requests/taskData'
+
 
 export function* handleTaskSaga(data){
-    const taskList=yield call(task.addTask,data)
-    console.log("fds",taskList);
+    const taskList=yield call(Task.addTask,data)
     yield put(getTaskList(taskList))
 }
 
 export default function* taskAddSaga(){
-    console.log("tasksaga");
-    yield takeEvery('ADD_TASK',handleTaskSaga)
+    yield takeEvery(types.ADD_TASK,handleTaskSaga)
 }

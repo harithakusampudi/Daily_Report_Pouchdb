@@ -3,7 +3,8 @@ import {saveDoc,deleteDoc} from './helpers'
 export default class Task {
     static addTask (data) {
       let list = []
-      let response=saveDoc('dummyDB',data.data).then(function(response){
+      let response=saveDoc('dummyDB',data.data)
+      .then(function(response){
          list=response
          return list
         })
@@ -11,11 +12,11 @@ export default class Task {
     }
     static deleteTask (data) {
         let list = []
-        let response=deleteDoc('dummyDB',data).then(function(response){
+        let response=deleteDoc('dummyDB',data)
+        .then(function(response){
            list=response
            return list
           })
-          console.log("deletedresponse",response);
           return response
       }
 }

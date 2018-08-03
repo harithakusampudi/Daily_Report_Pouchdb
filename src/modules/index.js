@@ -1,12 +1,39 @@
+import {types} from '../constants/types'
+
+
+export const addTask = (data) => ({ 
+    type:types.ADD_TASK, 
+    data
+})
+
+export const editTask = (data) => ({
+     type:types.EDIT_VALUE, 
+     data
+    })
+export const editInputTask = (data) => ({
+    type:types.INPUT_CHANGE, 
+    data
+    })
+export const deleteTask=(data)=>{
+    return {
+        type:types.DEL_TASK,
+        data
+    }
+}
+export const getTaskList =(data)=>({
+    type:types.FETCH_TASK_LIST,
+    data
+})
+
 const initialState = []
 
 const Reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'FETCH_TASK_LIST': {
+    case types.FETCH_TASK_LIST: {
       console.log("data",action.data);
       return action.data
     }
-    case 'EDIT_VALUE': {
+    case types.EDIT_VALUE: {
       const index = action.data.i
       if(action.data.change==='proj')
       state[index].project = action.data.value
@@ -15,7 +42,7 @@ const Reducer = (state = initialState, action) => {
      
       return new Array(...state);
     }
-    case 'INPUT_CHANGE': {
+    case types.INPUT_CHANGE: {
       const index = action.data.index
       if(action.data.change === 'task')
       state[index].task = action.data.changevalue

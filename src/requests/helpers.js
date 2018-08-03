@@ -9,16 +9,13 @@ setDB(dbName)
     .then(db =>
     db.allDocs({
         include_docs: true,
-        // attachments: true,
         dcscending:true
     })
     )
     .then(results => {
     const resultsDocs = results.rows.map(row => row.doc);
-    console.log("resultsDocs",resultsDocs);
     resolve(resultsDocs)
     }).then(response => {
-        console.log("json",response);
     })
     .catch(err => reject(err));
 });
@@ -57,11 +54,6 @@ export const setDB = dbName =>
       )
       .catch(err => reject(err));
   });
-  // export const deleteDoc = (dbName, doc) =>
-  // dbName.get(doc._id).then(function (doc) {
-  //   doc._deleted = true;
-  //   return dbName.put(doc);
-  // });
 
  export const updateDoc = (dbName, updatedDoc) =>
   new Promise((resolve, reject) => {

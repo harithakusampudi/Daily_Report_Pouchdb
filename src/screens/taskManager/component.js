@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Input, Button, Select,Icon } from 'antd';
 import 'antd/dist/antd.css';
-import { connect } from 'react-redux';
-import './App.css';
-import { addTask,editTask,editInputTask,deleteTask } from './actions/type';
+import '../../App.css';
 
 const Option = Select.Option;
 
@@ -39,7 +37,7 @@ class TaskManger extends Component {
             type,
             hour
         }
-        this.props.addTask(data)
+        this.props.actions.addTask(data)
     }
 
     valueChange(i,value,change){
@@ -48,7 +46,7 @@ class TaskManger extends Component {
          change,
          i
      }
-         this.props.editTask(data)
+         this.props.actions.editTask(data)
      }
 
      onInputChange(value,i,input){
@@ -57,7 +55,7 @@ class TaskManger extends Component {
          index :i,
          change :input
         }
-        this.props.editInputTask(data)
+        this.props.actions.editInputTask(data)
 
      }
 
@@ -89,7 +87,7 @@ class TaskManger extends Component {
                                     <Option value="Design">Design</Option>
                                     <Option value="Development">Development</Option>
                                 </Select>
-                                <Icon type="delete" onClick={()=>this.props.deleteTask(post)}/>
+                                <Icon type="delete" onClick={()=>this.props.actions.deleteTask(post)}/>
                             </div>
                         )
                     }
@@ -102,28 +100,8 @@ class TaskManger extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        list: state
-    }
 
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-        addTask: (data) => {
-        dispatch(addTask(data))
-        },
-        editTask :(data)=>{
-        dispatch(editTask(data))
-        },
-        editInputTask :(data)=>{
-        dispatch(editInputTask(data))
-        },
-        deleteTask:(data)=>{
-            dispatch(deleteTask(data))
-        }
-    };
-  };
 
-export default connect(mapStateToProps,mapDispatchToProps)(TaskManger);
+
+export default (TaskManger);
