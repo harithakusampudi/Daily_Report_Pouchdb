@@ -3,6 +3,7 @@ import { Input, Button, Select,Icon } from 'antd';
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 import './App.css';
+import { addTask,editTask,editInputTask,deleteTask } from './actions/type';
 
 const Option = Select.Option;
 
@@ -38,10 +39,7 @@ class TaskManger extends Component {
             type,
             hour
         }
-        this.props.dispatch({
-            type: 'ADD_TASK',
-            data
-        });
+        this.props.addTask(data)
     }
 
     valueChange(i,value,change){
@@ -50,10 +48,7 @@ class TaskManger extends Component {
          change,
          i
      }
-         this.props.dispatch({
-            type: 'EDIT_VALUE',
-            data
-        });
+         this.props.editTask(data)
      }
 
      onInputChange(value,i,input){
@@ -62,10 +57,7 @@ class TaskManger extends Component {
          index :i,
          change :input
         }
-        this.props.dispatch({
-            type :'INPUT_CHANGE',
-            data
-        })
+        this.props.editInputTask(data)
 
      }
 
@@ -76,6 +68,8 @@ class TaskManger extends Component {
 
 
     render() {
+        console.log("state",this.state.list);
+        
         return (
             <div>Enter Task : 
                 <Input className='inputBox' placeholder="Please enter Task" onChange={this.handleChange}/>
@@ -95,7 +89,7 @@ class TaskManger extends Component {
                                     <Option value="Design">Design</Option>
                                     <Option value="Development">Development</Option>
                                 </Select>
-                                <Icon type="delete" onClick={()=>this.props.dispatch({type:'DELETE_TASK',task:post.task})}/>
+                                <Icon type="delete" onClick={()=>this.props.deleteTask(post)}/>
                             </div>
                         )
                     }
@@ -115,4 +109,21 @@ const mapStateToProps = (state) => {
 
 }
 
-export default connect(mapStateToProps)(TaskManger);
+const mapDispatchToProps = dispatch => {
+    return {
+        addTask: (data) => {
+        dispatch(addTask(data))
+        },
+        editTask :(data)=>{
+        dispatch(editTask(data))
+        },
+        editInputTask :(data)=>{
+        dispatch(editInputTask(data))
+        },
+        deleteTask:(data)=>{
+            dispatch(deleteTask(data))
+        }
+    };
+  };
+
+export default connect(mapStateToProps,mapDispatchToProps)(TaskManger);

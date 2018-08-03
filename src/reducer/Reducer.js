@@ -2,8 +2,9 @@ const initialState = []
 
 const Reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_TASK': {
-      return state.concat([action.data]);
+    case 'FETCH_TASK_LIST': {
+      console.log("data",action.data);
+      return state.concat(action.data);
     }
     case 'DELETE_TASK': {
       return state.filter((post) => post.task !== action.task);
@@ -15,7 +16,7 @@ const Reducer = (state = initialState, action) => {
       else if(action.data.change==='type')
       state[index].type = action.data.value
      
-      return new Array(...state) ;
+      return new Array(...state);
     }
     case 'INPUT_CHANGE': {
       const index = action.data.index

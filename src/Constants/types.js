@@ -1,0 +1,8 @@
+export const types={
+    
+    ADD_TASK:'ADD_TASK',
+    EDIT_VALUE:'EDIT_VALUE',
+    INPUT_CHANGE:'INPUT_CHANGE',
+    DEL_TASK:'DELETE_TASK',
+    FETCH_TASK_LIST:'FETCH_TASK_LIST'
+}
