@@ -1,4 +1,7 @@
-import PouchDB from 'pouchdb-browser'
+// var PouchDB = require('pouchdb-browser');
+import PouchDB from 'pouchdb-browser' 
+import findPlugin from "pouchdb-find";
+PouchDB.plugin(findPlugin);
 
 var dummyDB = new PouchDB('dummyDB');
 var mydb = new PouchDB('mydb');
@@ -54,6 +57,28 @@ export const setDB = dbName =>
       )
       .catch(err => reject(err));
   });
+
+// export const sortDoc = (dbName) =>
+//       new Promise((resolve, reject) => {
+//         setDB(dbName)
+//           .then(db =>
+//             db
+//             .createIndex({
+//               index: {
+//                 fields: ['task'],
+//               }
+//             })
+//               .then(db=>
+//               db.find({
+//                 selector:{
+//                   task:{$ne:null}
+//                 },
+//                 sort: [{task: 'desc'}],
+//               })
+//           ).then(alldocs=>resolve(alldocs))
+//         )
+//           .catch(err => reject(err));
+//       });
 
  export const updateDoc = (dbName, updatedDoc) =>
   new Promise((resolve, reject) => {

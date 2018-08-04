@@ -32,6 +32,7 @@ class TaskManger extends Component {
         const type = this.state.type;
         const hour = this.state.hour;
         const data = {
+            _id: new Date().toISOString(),
             task,
             project,
             type,
@@ -50,6 +51,7 @@ class TaskManger extends Component {
      }
 
      onInputChange(value,i,input){
+         console.log("onchamge",value,i);
       const data={
         changevalue :value.target.value,
          index :i,
@@ -58,7 +60,6 @@ class TaskManger extends Component {
         this.props.actions.editInputTask(data)
 
      }
-
     componentWillReceiveProps(nextProps) {
         console.log("nextProps==",nextProps)
         this.setState({ list: nextProps.list })

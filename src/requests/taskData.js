@@ -1,4 +1,4 @@
-import {saveDoc,deleteDoc} from './helpers'
+import {saveDoc,deleteDoc,updateDoc,sortDoc} from './helpers'
 
 export default class Task {
     static addTask (data) {
@@ -13,6 +13,15 @@ export default class Task {
     static deleteTask (data) {
         let list = []
         let response=deleteDoc('dummyDB',data)
+        .then(function(response){
+           list=response
+           return list
+          })
+          return response
+      }
+      static editTask (data) {
+        let list = []
+        let response=updateDoc('dummyDB',data)
         .then(function(response){
            list=response
            return list

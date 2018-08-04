@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.7.3",
     "pouchdb-browser": "^7.0.0",
+    "pouchdb-find": "^7.0.0",
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
