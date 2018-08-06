@@ -5,13 +5,16 @@ import {
     addTask,
     editTask,
     editInputTask,
-    deleteTask } from '../../modules';
+    deleteTask,
+    getLIst } from '../../modules/task';
+
+import {getMonthlyList} from '../../modules/report'
 
 import TaskManager from './component'
 
 const mapStateToProps = (state) => {
     return {
-        list: state
+        list: state.task
     }
 }
 function mapDispatchToProps (dispatch) {
@@ -21,7 +24,9 @@ function mapDispatchToProps (dispatch) {
         addTask,
         editTask,
         editInputTask,
-        deleteTask
+        deleteTask,
+        getMonthlyList,
+        getLIst
       },
       dispatch
     )

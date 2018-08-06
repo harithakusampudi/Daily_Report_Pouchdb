@@ -2,7 +2,7 @@
 import { put, takeLatest,call } from 'redux-saga/effects'
 
 import { types } from '../constants/types'
-import { getTaskList } from '../modules'
+import { getTaskList } from '../modules/task'
 import  Task from '../requests/taskData'
 
 export function * handleTaskSaga(data){
@@ -13,6 +13,6 @@ export function * handleTaskSaga(data){
 
 export default function * taskDeleteSaga(){
     yield [
-        takeLatest(types.DEL_TASK,handleTaskSaga)
+        takeLatest(types.DELETE_TASK,handleTaskSaga)
     ]
 }

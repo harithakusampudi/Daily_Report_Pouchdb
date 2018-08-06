@@ -6,11 +6,16 @@ import  Task from '../requests/taskData'
 
 
 export function* handleTaskSaga(data){
-    const taskList=yield call(Task.addTask,data)
+    console.log("getliiii");
+    
+    const taskList=yield call(Task.getList,data)
+    console.log("getlist",taskList);
+    
     yield put(getTaskList(taskList))
 }
 
-export default function* taskAddSaga(){
-    console.log("addtasksaga");
-    yield takeEvery(types.ADD_TASK,handleTaskSaga)
+export default function* taskListSaga(){
+    console.log("getli");
+    
+    yield takeEvery(types.GET_LIST,handleTaskSaga)
 }

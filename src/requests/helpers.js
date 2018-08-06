@@ -83,10 +83,30 @@ export const setDB = dbName =>
  export const updateDoc = (dbName, updatedDoc) =>
   new Promise((resolve, reject) => {
     setDB(dbName)
+    .then(db =>
+      db.get(`${updatedDoc._id}`)
       .then(db =>
-        db
-          .put(updatedDoc)
+        db.put(updatedDoc)
           .then(getAllDocs(dbName).then(allDocs => resolve(allDocs)))
-      )
+      ))
       .catch(err => reject(err));
   });
+
+  export const getWeeklyDocs = dbName =>
+new Promise((resolve, reject) => {
+setDB(dbName)
+    .then(db =>
+    db.allDocs({
+        include_docs: true,
+        // startkey:',
+        // endkey:
+        dcscending:true
+    })
+    )
+    .then(results => {
+    const resultsDocs = results.rows.map(row => row.doc);
+    resolve(resultsDocs)
+    }).then(response => {
+    })
+    .catch(err => reject(err));
+});
