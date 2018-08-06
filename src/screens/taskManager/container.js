@@ -25,7 +25,6 @@ function mapDispatchToProps (dispatch) {
         editTask,
         editInputTask,
         deleteTask,
-        getMonthlyList,
         getLIst
       },
       dispatch

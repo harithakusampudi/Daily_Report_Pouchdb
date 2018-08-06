@@ -11,6 +11,5 @@ export function* handleTaskSaga(data){
 }
 
 export default function* taskAddSaga(){
-    console.log("addtasksaga");
     yield takeEvery(types.ADD_TASK,handleTaskSaga)
 }

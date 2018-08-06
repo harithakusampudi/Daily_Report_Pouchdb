@@ -14,7 +14,6 @@ export default class ReportComponent extends React.Component{
         super();
     }
     componentWillMount(){
-        this.props.actions.getMonthlyList(new Date().toISOString())
     }
     render(){
         console.log("list",this.props.list);

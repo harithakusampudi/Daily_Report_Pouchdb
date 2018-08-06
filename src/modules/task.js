@@ -2,7 +2,6 @@ import {types} from '../constants/types'
 
 
 export const addTask = (data) => {
-    console.log("addtask")
      return {
     type:types.ADD_TASK, 
     data
@@ -38,7 +37,6 @@ const initialState = []
 const task = (state = initialState, action) => {
   switch (action.type) {
     case types.FETCH_TASK_LIST: {
-      console.log("data",action.data);
       return action.data
     }
     case types.EDIT_VALUE: {

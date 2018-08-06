@@ -57,17 +57,14 @@ class TaskManger extends Component {
      }
 
      onInputChange(value,i,input){
-         console.log("onchamge",value,i);
       const data={
         changevalue :value.target.value,
          index :i,
          change :input
         }
         this.props.actions.editInputTask(data)
-
      }
     componentWillReceiveProps(nextProps) {
-        console.log("nextProps==",nextProps)
         this.setState({ list: nextProps.list })
     }
     componentWillMount(){
